@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сюрприз</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="feelings.html">Чувства</a>
+            <a href="letter.html">Письмо</a>
+            <a href="surprise.html" class="active">Сюрприз</a>
+        </nav>
+    </header>
+
+    <main class="page surprise">
+        <h2>Нажми и почувствуй</h2>
+        <button id="heartBtn" class="btn">❤️</button>
+        <div id="messageBox" style="display: none; margin-top: 24px; font-size: 24px; color: #f9d976;">
+            Ты — всё, что мне нужно.
+        </div>
+    </main>
+
+    <footer>
+        <p>Сделано для тебя</p>
+    </footer>
+
+    <script>
+        document.getElementById('heartBtn').addEventListener('click', function() {
+            const box = document.getElementById('messageBox');
+            box.style.display = 'block';
+            this.textContent = '❤️ Ты — моя';
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>

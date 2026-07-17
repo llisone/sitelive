@@ -1,0 +1,277 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-start: #0a0818;
+    --bg-end: #1a1138;
+    --text-primary: #ece8f5;
+    --text-secondary: #b4adcc;
+    --accent-1: #f7d875;
+    --accent-2: #e8a2c0;
+    --accent-3: #b589fa;
+    --accent-4: #6ad0fa;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 30% 20%, #1e1445, #0a0818 80%);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+    opacity: 0;
+    animation: bodyFade 1.2s ease forwards;
+}
+
+@keyframes bodyFade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ===== ГРАДИЕНТНАЯ ПОДЛОЖКА (парящие блики) ===== */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 70% 30%, rgba(183, 137, 250, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 20% 70%, rgba(250, 216, 117, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(106, 208, 250, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* ===== ШАПКА И НАВИГАЦИЯ ===== */
+header {
+    padding: 24px 20px 10px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(12px);
+    background: rgba(10, 8, 24, 0.4);
+    z-index: 10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 6px 10px;
+    border-radius: 60px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px 18px;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.2px;
+}
+
+nav a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+nav a.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px 60px;
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ===== ГЛАВНАЯ ===== */
+.hero h1 {
+    font-size: clamp(52px, 12vw, 96px);
+    font-weight: 600;
+    letter-spacing: -1.5px;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-4));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradShift 8s ease-in-out infinite;
+    margin-bottom: 18px;
+    line-height: 1.1;
+}
+
+@keyframes gradShift {
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.hero p {
+    font-size: clamp(17px, 2.2vw, 24px);
+    color: var(--text-secondary);
+    max-width: 540px;
+    line-height: 1.9;
+    font-weight: 300;
+    margin-bottom: 8px;
+}
+
+/* ===== СТРАНИЦЫ ===== */
+.page h2 {
+    font-size: 38px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    background: linear-gradient(to right, var(--accent-1), var(--accent-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 28px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(20px);
+    padding: 40px 44px;
+    border-radius: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    max-width: 640px;
+    width: 100%;
+    font-size: 19px;
+    line-height: 2.2;
+    color: var(--text-secondary);
+    box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.6);
+    transition: all 0.35s ease;
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 40px 80px -24px rgba(0, 0, 0, 0.7);
+}
+
+.letter p {
+    font-size: 20px;
+    line-height: 2.4;
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+/* ===== КНОПКИ ===== */
+.btn {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 14px 42px;
+    border-radius: 60px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.03);
+    transform: scale(1.02) translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.04);
+}
+
+/* ===== СЮРПРИЗ ===== */
+.surprise #heartBtn {
+    font-size: 72px;
+    padding: 20px 50px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: none;
+}
+
+.surprise #heartBtn:hover {
+    transform: scale(1.12);
+    text-shadow: 0 0 60px rgba(245, 87, 108, 0.1);
+}
+
+/* ===== ФУТЕР ===== */
+footer {
+    text-align: center;
+    padding: 20px 20px 14px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.02);
+    border-top: 1px solid rgba(255, 255, 255, 0.01);
+    margin-top: 16px;
+    letter-spacing: 0.5px;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 600px) {
+    header {
+        padding: 16px 12px 8px;
+    }
+    nav {
+        padding: 6px 8px;
+        gap: 4px;
+        border-radius: 40px;
+    }
+    nav a {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    .card {
+        padding: 24px 20px;
+        font-size: 17px;
+        border-radius: 32px;
+        line-height: 2;
+    }
+    .surprise #heartBtn {
+        font-size: 56px;
+        padding: 14px 28px;
+    }
+    .page h2 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    nav a {
+        font-size: 11px;
+        padding: 4px 10px;
+    }
+}
